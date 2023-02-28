@@ -1,0 +1,532 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/icono.ico' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <title>SALU STYLE | PERFIL</title>
+</head>
+
+<body class="bodyLanding">
+
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+
+    <!-- CONTAINER -->
+    <div class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg bg-white shadow">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="{% static 'images/salustyle.png' %}" alt="Salustyle img" width="170" height="70">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-flex justify-content-end me-3" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item me-5">
+                            <a class="nav-link fs-5 text-dark landing_listitem" aria-current="page"
+                                href="{% url 'home' %}">Inicio</a>
+                        </li>
+                        <li class="nav-item me-5">
+                            <a class="nav-link fs-5 text-dark landing_listitem_active" href="{% url 'mainPage' %}">Historia
+                                Clinica</a>
+                        </li>
+                        <li class="nav-item me-5">
+                            <a class="nav-link fs-5 text-dark landing_listitem" href="{% url 'perfil' %}">Mi Perfil</a>
+                        </li>
+                        <li class="nav-item me-5">
+                            <a class="nav-link fs-5 text-dark landing_listitem"
+                                href="{% url 'notificaciones' %}">Notificaciones</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item me-5">
+                            <a class="nav-link fs-5 text-dark landing_listitem" href="{% url 'logout' %}">Logout</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="position-relative ">
+            <div class="ms-3 pe-3 position-absolute top-0 start-0 lateral ">
+                <div class="col mt-4 me-3 ms-3">
+                    <div class="row g-0">
+                        <div class="col">
+                            <a href="{% url 'healthForm' %}" data-toggle="collapse" class="col icon mt-5 panel-heading">
+                                <i class="fa-solid fa-receipt"></i>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a href="{% url 'healthForm' %}"
+                                class="col text-hide mt-5 panel-heading panel-collapse collapse">
+                                <span class="text-white texto">Mis órdenes</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mt-4 me-3 ms-3">
+                    <div class="row g-0">
+                        <div class="col">
+                            <a href="{% url 'healthForm' %}" class="col icon panel-heading">
+                                <i class="fa-solid fa-syringe"></i>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a href="{% url 'healthForm' %}"
+                                class="col text-hide panel-heading panel-collapse collapse">
+                                <span class="text-white texto">Mis vacunas</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mt-4 me-3 ms-3">
+                    <div class="row g-0">
+                        <div class="col">
+                            <a href="{% url 'healthForm' %}" class="col icon panel-heading">
+                                <i class="fa-solid fa-user-doctor"></i>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a href="{% url 'healthForm' %}"
+                                class="col text-hide panel-heading panel-collapse collapse">
+                                <span class="text-white texto">Mis médicos</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col mt-4 me-3 ms-3">
+                    <div class="row g-0">
+                        <div class="col">
+                            <a href="{% url 'healthForm' %}" class="col icon panel-heading">
+                                <i class="fa-solid fa-calendar-days"></i>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a href="{% url 'healthForm' %}"
+                                class="col text-hide panel-heading panel-collapse collapse">
+                                <span class="text-white texto">Mis turnos</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col mt-4 me-3 ms-3">
+                    <div class="row g-0">
+                        <div class="col">
+                            <a href="{% url 'healthForm' %}" class="col icon panel-heading">
+                                <i class="fa-sharp fa-solid fa-address-card"></i>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a href="{% url 'healthForm' %}"
+                                class="col text-hide panel-heading panel-collapse collapse">
+                                <span class="text-white texto">Mis certificados</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col mt-4 me-3 ms-3">
+                    <div class="row g-0">
+                        <div class="col">
+                            <a href="{% url 'healthForm' %}" class="col icon shadow panel-heading">
+                                <i class="fa-sharp fa-solid fa-pills"></i>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a href="{% url 'healthForm' %}"
+                                class="col text-hide panel-heading panel-collapse collapse">
+                                <span class="text-white texto">Medicación</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col mt-4 me-3 ms-3 mb-5">
+                    <div class="row g-0">
+                        <div class="col">
+                            <a href="{% url 'healthForm' %}" class="col icon shadow panel-heading">
+                                <i class="fa-solid fa-book-medical"></i>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a href="{% url 'healthForm' %}"
+                                class="col text-hide panel-heading panel-collapse collapse">
+                                <span class="text-white texto">Mi reporte anual</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="position-relative">
+            <div class="position-absolute top-0 end-0 me-4 ">
+                <div class="col">
+                    <div class="card perfil">
+                        <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                            <img src="{% static 'images/test.jpg' %}" alt="perfil_usuario"
+                                class="mt-5 rounded-circle shadow">
+                            <h2 style="font-family: 'Mohave';" class="mt-2">{{user.first_name}} {{user.last_name}} <a
+                                    class="" href=""><i class="edit fa-sharp fa-solid fa-pen"></i></a></h2>
+                            <h3 style="font-family: 'Mohave'; color: #5589F5;">ID {{user.id}}</h3>
+                            <div class="row text-center justify-content-center mt-3">
+                                <div class="col">
+                                    <div class="">
+                                        <p class="caracteristicas">Peso</p>
+                                        <button class="btn btn-primary text-nowrap text-white"
+                                            style="width: 50px;">{{health.weight}}
+                                            kg</button>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="">
+                                        <p class="caracteristicas">Altura</p>
+                                        <button class="btn btn-primary text-nowrap text-white"
+                                            style="width: 50px;">{{health.height}}
+                                            cm</button>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="">
+                                        <p class="caracteristicas">Edad</p>
+                                        <button class="btn btn-primary text-nowrap text-white"
+                                            style="width: 50px;">{{age}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container-fluid p-0 mt-5">
+                                <div class="row text-nowrap">
+                                    <div class="col">
+                                        <p>Descanso</p>
+                                    </div>
+                                    <div class="col">
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 50%;"
+                                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">6hrs</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row text-nowrap">
+                                    <div class="col">
+                                        <p>Usa lentes</p>
+                                    </div>
+                                    <div class="col text-center">
+                                        {% if health.sedentary_work == 'si' %}
+                                        <i class="fa-sharp fa-solid fa-circle-check success"></i>
+                                        {% else %}
+                                        <i class="fa-sharp fa-solid fa-circle-check danger"></i>
+                                        {% endif %}
+
+                                    </div>
+                                </div>
+                                <div class="row text-nowrap">
+                                    <div class="col">
+                                        <p>Fumador</p>
+                                    </div>
+                                    <div class="col text-center">
+                                        {% if health.smoker == 'si' %}
+                                        <i class="fa-sharp fa-solid fa-circle-check success"></i>
+                                        {% else %}
+                                        <i class="fa-sharp fa-solid fa-circle-check danger"></i>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="row text-nowrap">
+                                    <div class="col">
+                                        <p>Actividad física</p>
+                                    </div>
+                                    <div class="col text-center">
+                                        {% if health.sedentary_work == 'si' %}
+                                        <i class="fa-sharp fa-solid fa-circle-check success"></i>
+                                        {% else %}
+                                        <i class="fa-sharp fa-solid fa-circle-check danger"></i>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-5">
+            <div class="row text-center">
+                <div class="col-8">
+                    <form>
+                        <div class="mb-3">
+                            <input type="text" class="form-control form-control-lg search"
+                                placeholder="Buscá médicos y turnos">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="row">
+                        <!-- Recent Sales -->
+                        <div class="col-12">
+                            <div class="card recent-sales overflow-auto">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Recent Sales <span>| Today</span></h5>
+
+                                    <table class="table table-borderless datatable">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Customer</th>
+                                                <th scope="col">Product</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row"><a href="#">#2457</a></th>
+                                                <td>Brandon Jacob</td>
+                                                <td><a href="#" class="text-primary">At praesentium minu</a></td>
+                                                <td>$64</td>
+                                                <td><span class="badge bg-success">Approved</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"><a href="#">#2147</a></th>
+                                                <td>Bridie Kessler</td>
+                                                <td><a href="#" class="text-primary">Blanditiis dolor omnis
+                                                        similique</a></td>
+                                                <td>$47</td>
+                                                <td><span class="badge bg-warning">Pending</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"><a href="#">#2049</a></th>
+                                                <td>Ashleigh Langosh</td>
+                                                <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
+                                                <td>$147</td>
+                                                <td><span class="badge bg-success">Approved</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"><a href="#">#2644</a></th>
+                                                <td>Angus Grady</td>
+                                                <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
+                                                <td>$67</td>
+                                                <td><span class="badge bg-danger">Rejected</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"><a href="#">#2644</a></th>
+                                                <td>Raheem Lehner</td>
+                                                <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
+                                                <td>$165</td>
+                                                <td><span class="badge bg-success">Approved</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                            </div>
+                        </div><!-- End Recent Sales -->
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 ms-5">
+                    <!-- CARD DE MEDICOS -->
+                    <div class="card mainCard shadow border-0">
+                        <div class="card-body">
+
+                            <div class="row">
+                                <h5 class="col card-title titleCardMain">Mis Médicos</h5>
+                
+                                <button class=" col-2 mb-2 me-3 btn btn-primary" id="new-doctor">Agregar Medico</button>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div id="carouselExampleDark" class="carousel slide" data-bs-interval="false"
+                                        data-ride="carousel" data-pause="hover">
+
+                                        <div class="carousel-inner">
+                                            {% for doctor in doctors %}
+                                                <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}">
+                                                    <div class="d-md-block w-100">
+                                                        <h5 class=" alert alert-success profesionesTitle w-auto
+                                                        text-center">{{doctor.md_specialize}}</h5>
+                                                        <div
+                                                            class="card-body informacionMedico mt-3 row justify-content-center align-content-center">
+                                                            <div class="col-auto">
+                                                                <p> <i class="bi bi-person icono"></i> {{doctor.md_fullname}}</p>
+                                                                <p> <i class="bi bi-envelope icono"></i>
+                                                                    {{doctor.md_mail}}</p>
+                                                                <p> <i class="bi bi-phone icono"></i> {{doctor.md_specialize}}</p>
+                                                                <p> <i class="bi bi-geo-alt icono"></i> {{doctor.md_address}}</p>
+                                                                <p> <i class="bi bi-hospital icono"></i> {{doctor.md_institucion}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        <button class="carousel-control-prev mt-3 align-top" type="button"
+                                            data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next mt-3 align-top" type="button"
+                                            data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CALENDARIO TURNOS -->
+                    <section class="ftco-section mb-5">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="content w-100">
+                                        <div class="calendar-container">
+                                            <div class="calendar">
+                                                <div class="year-header">
+                                                    <span class="left-button fa fa-chevron-left" id="prev"> </span>
+                                                    <span class="year" id="label"></span>
+                                                    <span class="right-button fa fa-chevron-right" id="next"> </span>
+                                                </div>
+                                                <table class="months-table w-100">
+                                                    <tbody>
+                                                        <tr class="months-row">
+                                                            <td class="month">Ene</td>
+                                                            <td class="month">Feb</td>
+                                                            <td class="month">Mar</td>
+                                                            <td class="month">Abr</td>
+                                                            <td class="month">May</td>
+                                                            <td class="month">Jun</td>
+                                                            <td class="month">Jul</td>
+                                                            <td class="month">Ago</td>
+                                                            <td class="month">Sep</td>
+                                                            <td class="month">Oct</td>
+                                                            <td class="month">Nov</td>
+                                                            <td class="month">Dic</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                                <table class="days-table w-100">
+                                                    <td class="day">DO</td>
+                                                    <td class="day">LU</td>
+                                                    <td class="day">MA</td>
+                                                    <td class="day">MI</td>
+                                                    <td class="day">JU</td>
+                                                    <td class="day">VI</td>
+                                                    <td class="day">SA</td>
+                                                </table>
+                                                <div class="frame">
+                                                    <table class="dates-table w-100">
+                                                        <tbody class="tbody">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <button class="button" id="add-button">Agregar Turno</button>
+                                                <!-- <button class="button" id="new-turno">Agregar Turno</button> -->
+                                            </div>
+                                        </div>
+                                        <div class="events-container ">
+                                        </div>
+                                        <div class="dialog" id="dialog">
+                                            <h2 class="dialog-header"> Nuevo Turno </h2>
+                                            <form class="form" id="form">
+                                                <div class="form-container" align="center">
+                                                    <label class="form-label" id="valueFromMyButton" for="name">Lugar</label>
+                                                    <input class="input" type="text" id="name" maxlength="36" name="place">
+                                                    <label class="form-label" id="valueFromMyButton" for="count">Profesional</label>
+                                                        <select class="input" id="doctor" aria-label="Default select example" name="doctor"
+                                                        aria-placeholder="Elige" required>
+                                                        {% for doctor in doctors %}
+                                                        <option value="{{doctor.id}}" {% if form.doctor == doctor %} selected {% endif %}>{{doctor}}
+                                                        </option>
+                                                        {% endfor %}
+                                                      </select>
+                                                    <input type="button" value="Cancel" class="button"
+                                                        id="cancel-button">
+                                                    <input type="button" value="OK" class="button button-white"
+                                                        id="ok-button">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'libs/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script>
+        window.data = { args: "{{ turnos | safe}}", url: "{% url 'turnoModal' %}" }
+    </script>
+    <script>
+        
+        $(".panel-heading").hover(
+            function () {
+                $('.panel-collapse').collapse('show');
+            }, function () {
+                $('.panel-collapse').collapse('hide');
+            }
+        );
+
+        $(document).ready(function () {
+
+            $("#new-doctor").modalForm({
+                formURL: "{% url 'newDoctorTest' %}",
+                asyncSettings: {
+                    closeOnSubmit: true,
+
+                }
+            });
+
+        });
+
+        $(document).ready(function () {
+
+            $("#new-turno").modalForm({
+                formURL: "{% url 'newTurno' %}",
+                asyncSettings: {
+                    closeOnSubmit: true,
+
+                }
+            });
+
+        });
+    </script>
+</body>
+
+</html>

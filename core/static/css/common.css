@@ -1,0 +1,14 @@
+.common-bkg {
+    background: #F77E91;
+}
+
+.common-input-bkg{
+    background: #A8C2F8;
+}
+
+.add-button{
+    display: block;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}   
